@@ -5,10 +5,13 @@
 sids_length = input("Введите стороны треугольника через пробел: ")
 a, b, c = sids_length.split(" ")
 a, b, c = int(a), int(b), int(c)
-
-if a == b and a == c and b == c:
-    print("Треугольник равносторонний")
-elif a == b or a == c or b == c:
-    print("Треугольник равнобедренный")
+if a + b > c and a + c > b and b + c > a:
+    print("Треугольник может быть построен")
+    if a == b and a == c and b == c:
+        print("Треугольник равносторонний")
+    elif a == b or a == c or b == c:
+        print("Треугольник равнобедренный")
+    else:
+        print("Треугольник разносторонний")
 else:
-    print("Треугольник разносторонний")
+    print("Треугольник не может быть построен")
