@@ -9,13 +9,33 @@ if num.isdigit():
     while len(num) != 0:
         a = num[-1]
         revers_num += a
-        print(a)
         num = num[: -1]
 else:
     print("Это не число")
 print(f"Для числа {num_2} обратным числом является {revers_num}")
 
+
 # Версия для ленивых
-if num_2.isdigit():
-    num_3 = num_2[::-1]
-    print(f"Для числа {num_2} обратным числом является {num_3}")
+
+
+def reverse_num(num):
+    if num.isdigit():
+        num_2 = num[::-1]
+        return f"Для числа {num} обратным числом является {num_2}"
+
+print(reverse_num("123"))
+
+
+# Рекурсия
+
+def reverse_string(string, new_string=""):
+    if len(string) == 0:
+        return new_string
+    a = string[-1]
+    new_string += a
+    string = string[:-1]
+    return reverse_string(string, new_string)
+
+
+print(f"Для числа {'123'} обратным числом является {reverse_string('123')}")
+
