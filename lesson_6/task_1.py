@@ -13,6 +13,12 @@
 # Например, если введено число 3486, надо вывести 6843
 import sys
 
+def sum_memory(objects):
+    sum_mem = 0
+    for el in objects:
+        sum_mem += sys.getsizeof(objects[el])
+    return sum_mem
+
 # print(sys.version)
 # print(sys.platform)
 # 3.9.2 (v3.9.2:1a79785e3e, Feb 19 2021, 09:06:10)
@@ -31,9 +37,17 @@ def show_sizeof(x, size_count=0):
                     size_count += sys.getsizeof(k)
                     size_count += sys.getsizeof(v)
         elif not isinstance(x, str):
+            repeat_more_one = []
             for el in x:
                 show_sizeof(el)
-                size_count += sys.getsizeof(el)
+                repeat = x.count(el)
+                if repeat > 1:
+                    repeat_more_one.append(el)
+                    continue
+                else:
+                    size_count += sys.getsizeof(el)
+            for e in set(repeat_more_one):
+                size_count += sys.getsizeof(e)
     return size_count
 
 
@@ -106,9 +120,6 @@ print(f"Обьем потребляемой памяти {int(sum(map(show_sizeo
 # Не нравится использование global, но лучше ничего в голову не пришло.
 # Алгоритм со слайсом на мой взгляд самый удачный - быстро и можно при желании
 # обратить в число или оставить строку.
-
-
-
 
 
 
